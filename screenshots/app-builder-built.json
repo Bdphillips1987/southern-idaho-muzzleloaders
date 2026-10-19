@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Southern Idaho Muzzleloaders",
+      "hasCanvas": false,
+      "bodyTextLen": 2882,
+      "bodyTextHash": "df969837dc42cc29b85cbe8d9b7f627acf870da87bbae757f6b33788b35a7144",
+      "bodyTextPrefix": "Skip to content SOUTHERN IDAHO Muzzleloaders Home Safety Events ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Southern Idaho Muzzleloaders",
+      "hasCanvas": false,
+      "bodyTextLen": 2812,
+      "bodyTextHash": "f3d7d113879bbe0fe1723a8f0894752488e70f27bb0187b57b8024522a4a7667",
+      "bodyTextPrefix": "Skip to content SOUTHERN IDAHO Muzzleloaders Open menu MAGIC VAL",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

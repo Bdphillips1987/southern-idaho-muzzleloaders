@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Source Sans 3", "Segoe UI", sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+
+  --color-parchment: #f3eee4;
+  --color-cream: #faf6ef;
+  --color-ink: #2c2924;
+  --color-muted: #5c564c;
+  --color-forest: #24382c;
+  --color-brass: #a68445;
+  --color-rust: #8f4530;
+  --color-line: #e0d5c3;
+
+  --spacing-hero: 32rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-parchment);
+    background-image: url("/textures/fiber.png");
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-rust);
+    outline-offset: 3px;
+  }
+}
+
+@utility wrap {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 72rem;
+  padding-inline: 1.25rem;
+}
+
+@utility ledger {
+  background-color: var(--color-cream);
+  background-image: url("/textures/fiber.png");
+  border: 1px solid color-mix(in srgb, var(--color-brass) 75%, var(--color-ink));
+  box-shadow:
+    0 0 0 6px var(--color-parchment),
+    0 0 0 7px var(--color-brass);
+}
+
+@utility camp {
+  background-color: var(--color-forest);
+  background-image: url("/textures/blanket.svg");
+  color: var(--color-cream);
+}
+
+main > header {
+  background-color: var(--color-cream);
+  background-image: url("/textures/fiber.png");
+  border-bottom: 4px double var(--color-brass);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
