@@ -18,7 +18,10 @@
     "check:auth": "node scripts/check-auth-invariant.mjs",
     "test": "node --test 'scripts/**/*.test.mjs' && node --experimental-strip-types --test src/lib/app-data/app-data.test.ts src/lib/app-data/readiness-schedule.test.ts src/lib/auth/gate-identity.test.ts src/lib/auth/sign-in-gate.test.ts src/lib/preview-path-prefix.test.ts",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "cf:build": "DEPLOY_TARGET=cloudflare node scripts/with-app-env.mjs vite build",
+    "cf:preview": "wrangler dev --config dist/server/wrangler.json --port 8787 --ip 127.0.0.1",
+    "cf:deploy": "npm run cf:build && wrangler deploy --config dist/server/wrangler.json"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.4",
@@ -76,6 +79,7 @@
     "vaul": "^1.1.2",
     "vite": "^8.2.0",
     "zod": "^4.4.0",
+    "@cloudflare/vite-plugin": "^1.64.0",
     "zustand": "^5.0.0"
   },
   "devDependencies": {
@@ -92,6 +96,7 @@
     "globals": "^15.15.0",
     "playwright": "^1.62.0",
     "prettier": "^3.4.0",
-    "typescript-eslint": "^8.56.1"
+    "typescript-eslint": "^8.56.1",
+    "wrangler": "^4.151.1"
   }
 }

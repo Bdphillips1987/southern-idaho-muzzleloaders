@@ -39,15 +39,13 @@ function Header() {
 
   return (
     <header className="camp sticky top-0 z-40 border-b-4 border-double border-brass text-cream">
-      <div className="wrap flex items-center justify-between gap-4 py-3">
-        <Link to="/" className="min-h-11 shrink-0" onClick={() => setOpen(false)}>
-          <span className="block text-xs font-semibold uppercase tracking-widest text-brass">
-            Southern Idaho
-          </span>
-          <span className="font-display text-2xl leading-none text-cream">Muzzleloaders</span>
+      <div className="wrap flex items-center justify-between gap-4 py-3.5">
+        <Link to="/" className="min-h-12 shrink-0" onClick={() => setOpen(false)}>
+          <span className="block text-xs font-bold uppercase tracking-[0.22em] text-brass-bright">Southern Idaho</span>
+          <span className="font-display text-[1.7rem] leading-none text-cream">Muzzleloaders</span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-0.5 xl:flex" aria-label="Primary">
           {links.map((link) => (
             <Link
               key={link.to}
@@ -55,14 +53,14 @@ function Header() {
               activeOptions={{ exact: true }}
               className={
                 link.to === "/safety"
-                  ? "inline-flex min-h-11 items-center px-3 text-sm font-semibold text-brass hover:text-cream"
-                  : "inline-flex min-h-11 items-center px-3 text-sm font-semibold text-cream/80 hover:text-cream"
+                  ? "inline-flex min-h-11 items-center px-2.5 text-[0.92rem] font-semibold text-brass-bright hover:text-cream"
+                  : "inline-flex min-h-11 items-center px-2.5 text-[0.92rem] font-semibold text-cream/80 hover:text-cream"
               }
               activeProps={{
                 className:
                   link.to === "/safety"
-                    ? "inline-flex min-h-11 items-center px-3 text-sm font-semibold text-brass underline decoration-brass decoration-2 underline-offset-8"
-                    : "inline-flex min-h-11 items-center px-3 text-sm font-semibold text-cream underline decoration-brass decoration-2 underline-offset-8",
+                    ? "inline-flex min-h-11 items-center px-2.5 text-[0.92rem] font-semibold text-brass-bright underline decoration-brass-bright decoration-2 underline-offset-8"
+                    : "inline-flex min-h-11 items-center px-2.5 text-[0.92rem] font-semibold text-cream underline decoration-brass-bright decoration-2 underline-offset-8",
               }}
             >
               {link.label}
@@ -71,16 +69,14 @@ function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={`tel:${club.phoneTel}`}
-            className="hidden min-h-11 items-center gap-2 bg-rust px-4 text-sm font-semibold text-cream hover:bg-ink sm:inline-flex"
-          >
+          <a href={`tel:${club.phoneTel}`} className="btn btn-rust hidden sm:inline-flex">
             <Phone className="size-4" aria-hidden />
-            Call Leon
+            <span className="hidden lg:inline">Try it free: call Leon</span>
+            <span className="lg:hidden">Call Leon</span>
           </a>
           <button
             type="button"
-            className="inline-flex size-11 items-center justify-center border border-cream/30 lg:hidden"
+            className="inline-flex size-12 items-center justify-center border border-cream/40 xl:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((value) => !value)}
@@ -92,7 +88,7 @@ function Header() {
       </div>
 
       {open ? (
-        <nav id="mobile-nav" className="border-t border-cream/15 bg-forest lg:hidden" aria-label="Mobile">
+        <nav id="mobile-nav" className="border-t border-cream/15 bg-forest-deep xl:hidden" aria-label="Mobile">
           <div className="wrap flex flex-col py-2">
             {links.map((link) => (
               <Link
@@ -101,17 +97,19 @@ function Header() {
                 activeOptions={{ exact: true }}
                 className={
                   link.to === "/safety"
-                    ? "flex min-h-11 items-center border-b border-cream/10 text-base font-semibold text-brass"
-                    : "flex min-h-11 items-center border-b border-cream/10 text-base font-semibold text-cream"
+                    ? "flex min-h-12 items-center border-b border-cream/10 text-lg font-semibold text-brass-bright"
+                    : "flex min-h-12 items-center border-b border-cream/10 text-lg font-semibold text-cream"
                 }
-                activeProps={{ className: "flex min-h-11 items-center border-b border-cream/10 text-base font-semibold text-brass" }}
+                activeProps={{
+                  className: "flex min-h-12 items-center border-b border-cream/10 text-lg font-semibold text-brass-bright",
+                }}
                 onClick={() => setOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <a href={`tel:${club.phoneTel}`} className="flex min-h-11 items-center font-semibold text-brass">
-              {club.phoneDisplay}
+            <a href={`tel:${club.phoneTel}`} className="flex min-h-12 items-center text-lg font-semibold text-brass-bright">
+              Try it free: {club.phoneDisplay}
             </a>
           </div>
         </nav>
@@ -122,15 +120,16 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="camp mt-16 text-cream">
-      <div className="wrap grid gap-10 py-12 md:grid-cols-3">
+    <footer className="camp text-cream">
+      <div className="wrap grid gap-12 py-14 md:grid-cols-3">
         <div>
-          <p className="font-display text-2xl">Southern Idaho Muzzleloaders</p>
-          <p className="mt-3 max-w-xs text-cream/80">{club.mission}</p>
+          <p className="font-display text-3xl leading-tight">Southern Idaho Muzzleloaders</p>
+          <p className="mt-4 max-w-xs text-cream/80">{club.mission}</p>
+          <p className="mt-4 text-sm text-cream/70">Magic Valley. Shoshone and Twin Falls.</p>
         </div>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-brass">Visit</p>
-          <ul className="mt-3 space-y-2">
+          <p className="kicker">Visit</p>
+          <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2">
             <li><FooterLink to="/events">Next shoot</FooterLink></li>
             <li><FooterLink to="/new-shooters">Try a shot free</FooterLink></li>
             <li><FooterLink to="/gear">Basic kit</FooterLink></li>
@@ -141,39 +140,67 @@ function Footer() {
             <li><FooterLink to="/gallery">Gallery</FooterLink></li>
             <li><FooterLink to="/safety">Safety</FooterLink></li>
             <li><FooterLink to="/donate">Help the club</FooterLink></li>
+            <li><FooterLink to="/contact">Contact</FooterLink></li>
           </ul>
         </div>
         <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-brass">Reach Leon Reed</p>
-          <p className="mt-3">
-            <a className="font-semibold text-cream underline decoration-brass underline-offset-4" href={`tel:${club.phoneTel}`}>
+          <p className="kicker">Reach Leon Reed</p>
+          <p className="mt-4">
+            <a className="font-display text-3xl text-cream underline decoration-brass-bright decoration-2 underline-offset-4" href={`tel:${club.phoneTel}`}>
               {club.phoneDisplay}
             </a>
           </p>
-          <p className="mt-2 text-cream/80">
+          <p className="mt-3 text-cream/80">
             {club.mailing[0]}
             <br />
             {club.mailing[1]}
           </p>
-          <p className="mt-3">
-            <a className="font-semibold text-cream underline decoration-brass underline-offset-4" href={club.facebook}>
-              Facebook page
+          <p className="mt-4">
+            <a
+              className="font-semibold text-cream underline decoration-brass-bright underline-offset-4"
+              href={club.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {club.facebookName}
+              <span className="sr-only"> (opens in a new tab)</span>
             </a>
           </p>
         </div>
       </div>
       <div className="border-t border-cream/15">
-        <p className="wrap py-4 text-sm text-cream/70">
-          {club.legalName} · Magic Valley, Shoshone and Twin Falls. Affiliated with the Idaho State Rifle & Pistol Association. Street address, dues, and other officers stay off this site until the club publishes them.
-        </p>
+        <div className="wrap space-y-2 py-5 text-sm text-cream/75">
+          <p>
+            {club.legalName}. Affiliated with the Idaho State Rifle & Pistol Association. Dues and a street address are not published here. Ask Leon.
+          </p>
+          <p>Preview site. Prepared for the club to look over. Not the official live site.</p>
+        </div>
       </div>
     </footer>
   );
 }
 
-function FooterLink({ to, children }: { to: "/" | "/events" | "/new-shooters" | "/gear" | "/blog" | "/newsletter" | "/membership" | "/about" | "/gallery" | "/safety" | "/donate" | "/contact"; children: React.ReactNode }) {
+function FooterLink({
+  to,
+  children,
+}: {
+  to:
+    | "/"
+    | "/events"
+    | "/new-shooters"
+    | "/gear"
+    | "/blog"
+    | "/newsletter"
+    | "/membership"
+    | "/about"
+    | "/gallery"
+    | "/safety"
+    | "/donate"
+    | "/contact";
+  children: React.ReactNode;
+}) {
   return (
-    <Link to={to} className="text-cream/80 underline decoration-brass/60 underline-offset-4 hover:text-cream">
+    <Link to={to} className="text-cream/80 underline decoration-brass/50 underline-offset-4 hover:text-cream">
       {children}
     </Link>
   );

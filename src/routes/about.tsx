@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { CallLeon, ExternalLink, PageHeader, Rule } from "@/components/editorial";
 import { club } from "@/lib/club";
 
 export const Route = createFileRoute("/about")({
@@ -8,7 +9,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Southern Idaho Muzzle Loaders Inc. keeps fur-trade shooting in the Magic Valley — Shoshone and Twin Falls. Affiliated with the Idaho State Rifle & Pistol Association.",
+          "Southern Idaho Muzzle Loaders Inc. keeps fur-trade shooting in the Magic Valley. Shoshone and Twin Falls. Flintlock and percussion. Leon Reed, 208-423-4788.",
       },
     ],
   }),
@@ -18,65 +19,85 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <main>
-      <header className="border-b border-line bg-cream">
-        <div className="wrap py-14">
-          <p className="text-sm font-semibold uppercase tracking-widest text-rust">About the club</p>
-          <h1 className="mt-3 max-w-3xl font-display text-4xl leading-tight text-forest md:text-6xl">
-            Fur-trade skills, still practiced.
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg text-muted">
-            {club.facebookName} is the public name on Facebook. The incorporated name on the state association list is {club.legalName}.
-          </p>
-        </div>
-      </header>
+      <PageHeader
+        kicker="About the club"
+        title="Fur-trade skills, still practiced."
+        lede={`${club.facebookName} is the name on Facebook. The incorporated name is ${club.legalName}. The work is the same: flintlock and percussion, the slow way, in the Magic Valley.`}
+      />
 
-      <section className="wrap grid gap-12 py-14 md:grid-cols-[1.2fr_0.8fr]">
-        <div className="space-y-4 text-lg leading-relaxed">
+      <section className="wrap grid gap-12 py-16 md:grid-cols-[1.15fr_0.85fr] md:py-20">
+        <div className="space-y-5 text-lg leading-relaxed">
           <p>
-            The club’s own line is simple: preserve and practice the skills of the fur-trade era. In practice that means traditional muzzleloaders, flintlock and percussion, shot at a monthly match.
+            The club’s line is simple. Preserve and practice the skills of the fur-trade era. In practice that means traditional muzzleloaders, shot on the last Saturday of the month.
           </p>
           <p>
-            Shoots fall on the last Saturday of the month. The club is the Magic Valley: Shoshone and Twin Falls. Mail still goes to the Twin Falls post office box. No street address is published here.
+            The shooting is in Shoshone. Shoshone sits in Lincoln County, inside the Magic Valley. Twin Falls County is the next one over. Mail still goes to the Twin Falls post office box. No street address is published here.
           </p>
           <p>
-            {club.legalName} is an affiliated club of the Idaho State Rifle & Pistol Association. The public contact there, and on every directory that lists the club, is {club.contact}.
+            {club.legalName} is an affiliated club of the Idaho State Rifle & Pistol Association. The public contact on that list, and on the directories that name the club, is {club.contact}.
+          </p>
+          <p>
+            People come who have shot these guns for decades. People come who hunt with a muzzleloader and want a day that is not a season. People come who have never loaded from the muzzle and want to see the smoke once. Call before you come. A first try is free when you do.
           </p>
         </div>
-        <aside className="h-fit border border-line bg-cream p-6">
-          <p className="text-sm font-semibold uppercase tracking-widest text-brass">On the record</p>
-          <dl className="mt-4 space-y-4">
+        <aside className="card h-fit p-6 md:p-8">
+          <p className="kicker">On the record</p>
+          <dl className="mt-5 space-y-5">
             <Fact term="Contact" detail={club.contact} />
             <Fact term="Phone" detail={club.phoneDisplay} />
-            <Fact term="Where" detail="Magic Valley — Shoshone and Twin Falls" />
+            <Fact term="Where" detail="Magic Valley — shooting in Shoshone, mail in Twin Falls" />
             <Fact term="Mail" detail={`${club.mailing[0]}, ${club.mailing[1]}`} />
             <Fact term="Shoots" detail="Last Saturday of the month" />
+            <Fact term="First visit" detail="Free when you call Leon first" />
           </dl>
-          <a href={club.isrpa} className="mt-6 inline-flex min-h-11 items-center font-semibold text-forest underline decoration-brass decoration-2 underline-offset-4">
-            ISRPA club listing
-          </a>
+          <p className="mt-6">
+            <ExternalLink href={club.isrpa}>ISRPA club listing</ExternalLink>
+          </p>
+          <p className="mt-3">
+            <ExternalLink href={club.facebook}>Facebook page</ExternalLink>
+          </p>
         </aside>
       </section>
 
-      <section className="bg-cream py-14">
-        <div className="wrap">
-          <h2 className="font-display text-3xl text-forest">What this page will not guess</h2>
-          <ul className="mt-6 grid gap-4 md:grid-cols-2">
-            {[
-              "Dues, and what they cover",
-              "Officers besides Leon Reed",
-              "A street address",
-              "The club’s written safety rules and bylaws",
-            ].map((item) => (
-              <li key={item} className="border border-line bg-parchment p-5 text-lg">
-                {item}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-6 max-w-2xl text-muted">
-            Those belong to the club. When leadership sends them, they can go on this page without changing the rest of the site.
-          </p>
+      <section className="border-y border-line bg-cream/80">
+        <div className="wrap py-16 md:py-20">
+          <p className="kicker">The tradition</p>
+          <h2 className="mt-3 max-w-3xl font-display text-4xl leading-tight text-forest md:text-5xl">
+            How a muzzleloader came to be the slow gun.
+          </h2>
+          <Rule />
+          <div className="mt-8 grid gap-8 text-lg leading-relaxed md:grid-cols-2">
+            <p>
+              For centuries a gun loaded from the front of the barrel. Powder. A ball. A way to light it. That is the whole machine. There is no cartridge to drop in, and there is no hurry built into the lock.
+            </p>
+            <p>
+              A flintlock strikes flint on steel. Sparks fall into a pan of powder. The flash travels through a touch hole and lights the charge behind the ball. Rifles of the fur trade were flintlocks. People still shoot them because the older spark is the point.
+            </p>
+            <p>
+              Percussion arrived in the early 1800s. A copper cap sits on a nipple. The hammer crushes it, and the flame goes straight to the powder. It is surer in damp weather. It is still a muzzleloader. The club shoots both.
+            </p>
+            <p>
+              The ball is round, and it wears a cloth patch. The patch takes the rifling, so the ball spins. The powder is measured by hand. That slowness is the sport the club is keeping in the Magic Valley. This is the history of the gun, not a founding date for the club. The club has not published one here.
+            </p>
+          </div>
         </div>
       </section>
+
+      <section className="wrap py-16 md:py-20">
+        <h2 className="font-display text-4xl text-forest">Ask Leon for the rest.</h2>
+        <p className="mt-4 max-w-2xl text-lg text-muted">
+          Dues, the street, and who else speaks for the club stay with him until the club writes them down. Call {club.phoneDisplay}. He is the public contact.
+        </p>
+        <ul className="mt-8 grid gap-4 md:grid-cols-3">
+          {["What the dues are", "Where to turn in", "Who else to ask"].map((item) => (
+            <li key={item} className="card p-5 text-lg">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <CallLeon />
     </main>
   );
 }
@@ -84,7 +105,7 @@ function About() {
 function Fact({ term, detail }: { term: string; detail: string }) {
   return (
     <div>
-      <dt className="text-sm font-semibold uppercase tracking-widest text-muted">{term}</dt>
+      <dt className="kicker">{term}</dt>
       <dd className="mt-1 text-ink">{detail}</dd>
     </div>
   );

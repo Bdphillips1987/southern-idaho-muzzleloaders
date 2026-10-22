@@ -22,6 +22,7 @@ import { Route as NewShootersRouteImport } from './routes/new-shooters'
 import { Route as NewsletterRouteImport } from './routes/newsletter'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as SafetyRouteImport } from './routes/safety'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -89,6 +90,11 @@ const SafetyRoute = SafetyRouteImport.update({
   path: '/safety',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BlogRoute,
+} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -110,11 +116,11 @@ export interface FileRoutesByFullPath {
   '/resources': typeof ResourcesRoute
   '/safety': typeof SafetyRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/events': typeof EventsRoute
@@ -126,6 +132,7 @@ export interface FileRoutesByTo {
   '/resources': typeof ResourcesRoute
   '/safety': typeof SafetyRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -143,6 +150,7 @@ export interface FileRoutesById {
   '/resources': typeof ResourcesRoute
   '/safety': typeof SafetyRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -161,11 +169,11 @@ export interface FileRouteTypes {
     | '/resources'
     | '/safety'
     | '/blog/$slug'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
-    | '/blog'
     | '/contact'
     | '/donate'
     | '/events'
@@ -177,6 +185,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/safety'
     | '/blog/$slug'
+    | '/blog'
   id:
     | '__root__'
     | '/'
@@ -193,6 +202,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/safety'
     | '/blog/$slug'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -304,6 +314,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SafetyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof BlogRoute
+    }
     '/blog/$slug': {
       id: '/blog/$slug'
       path: '/$slug'
@@ -316,10 +333,12 @@ declare module '@tanstack/react-router' {
 
 interface BlogRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
 }
 
 const BlogRouteChildren: BlogRouteChildren = {
   BlogSlugRoute: BlogSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
 }
 
 const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
