@@ -60,3 +60,9 @@ From him, not from a webpage:
 ## How to keep working
 
 Match the voice on the site. If a public source says Twin Falls and Benjamin said Shoshone, keep both: Magic Valley, shooting in Shoshone, mail and directories in Twin Falls. Do not smooth that away. Do not add the word range. Do not replace the hero unless he asks.
+
+## Changelog
+
+### October 22, 2026
+
+Presentation redesign for a club leader to look over. Same facts, same canyon-camp hero, same parchment, forest, brass, and rust. The pages were rebuilt with a larger serif, more air, engraved rules, and a “Try it free: call Leon” line on every page. Copy was filled in on the history of muzzleloading, a Saturday on the line, safety, the pouch checklist, and two new field notes. Blog posts open on their own page. Signups, the newsletter, and gifts still stay on the phone. Gallery scenes are still labeled as not member photographs. Footer says this is a preview, not the official site. Pages stay noindex. Share title, description, and the canyon card are set. Cloudflare worker name is still `southern-idaho-muzzleloaders`. Not deployed.

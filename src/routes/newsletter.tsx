@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
+import { CallLeon, PageHeader } from "@/components/editorial";
 import { club } from "@/lib/club";
 
 export const Route = createFileRoute("/newsletter")({
@@ -9,7 +10,7 @@ export const Route = createFileRoute("/newsletter")({
       {
         name: "description",
         content:
-          "Subscribe for the Southern Idaho Muzzleloaders note: the Shoshone shoot, Twin Falls valley news, and a short muzzleloading lesson.",
+          "A short note from Southern Idaho Muzzleloaders: the Shoshone shoot, Twin Falls valley news, and one plain lesson. A signup on this page stays on your phone.",
       },
     ],
   }),
@@ -24,60 +25,76 @@ function Newsletter() {
   function onSubmit(event: FormEvent) {
     event.preventDefault();
     const entry = { name: name.trim(), email: email.trim(), at: new Date().toISOString() };
-    const prior = JSON.parse(localStorage.getItem("siml-newsletter") ?? "[]") as unknown[];
+    let prior: unknown[] = [];
+    try {
+      const parsed = JSON.parse(localStorage.getItem("siml-newsletter") ?? "[]") as unknown;
+      if (Array.isArray(parsed)) prior = parsed;
+    } catch {
+      prior = [];
+    }
     localStorage.setItem("siml-newsletter", JSON.stringify([...prior, entry]));
-    const text = `Newsletter signup for ${club.name}\nName: ${entry.name}\nEmail: ${entry.email}`;
+    const text = `Newsletter signup for ${club.name}\nName: ${entry.name}\nEmail: ${entry.email}\nThis note was copied from the preview site. It was not emailed to the club.`;
     void navigator.clipboard?.writeText(text).catch(() => undefined);
     setSaved(true);
   }
 
   return (
     <main>
-      <header className="border-b border-line bg-cream">
-        <div className="wrap py-14">
-          <p className="text-sm font-semibold uppercase tracking-widest text-rust">Newsletter</p>
-          <h1 className="mt-3 max-w-3xl font-display text-4xl leading-tight text-forest md:text-6xl">
-            One note. The shoot, the valley, one lesson.
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg text-muted">
-            The meeting asked for a letter people can subscribe to. This is that page. It is for the shooters who already mark the last Saturday, and for the newer ones who need a reason to show up.
-          </p>
-        </div>
-      </header>
+      <PageHeader
+        kicker="Newsletter"
+        title="One note. The shoot, the valley, one lesson."
+        lede="For the shooters who already mark the last Saturday, and for the newer ones who need a reason to show up. The letter is not being mailed from this page."
+      />
 
-      <section className="wrap grid gap-10 py-14 md:grid-cols-[0.9fr_1.1fr]">
+      <section className="wrap grid gap-10 py-16 md:grid-cols-[0.9fr_1.1fr]">
         <div>
-          <h2 className="font-display text-3xl text-forest">What goes in it</h2>
-          <ul className="mt-4 space-y-3 text-lg">
-            <li>The next Shoshone shoot, with the time once Leon has said it.</li>
-            <li>A short valley note when something real is happening in Twin Falls or Shoshone.</li>
-            <li>One plain muzzleloading lesson. No catalog voice.</li>
+          <h2 className="font-display text-4xl text-forest">What would go in it.</h2>
+          <ul className="mt-5 space-y-4 text-lg">
+            <li className="border-l-4 border-brass pl-4">The next Shoshone shoot. The time, once Leon has said it.</li>
+            <li className="border-l-4 border-brass pl-4">A short valley note when something real is happening in Twin Falls or Shoshone.</li>
+            <li className="border-l-4 border-brass pl-4">One plain muzzleloading lesson. No catalog voice.</li>
           </ul>
           <p className="mt-6 text-muted">
-            Read the latest on the <Link to="/blog" className="font-semibold text-forest underline decoration-brass underline-offset-4">blog</Link>. The letter is the same news, sent to people who will not come looking.
+            Read the latest on the{" "}
+            <Link to="/blog" className="font-semibold text-forest underline decoration-brass underline-offset-4">
+              blog
+            </Link>
+            . The same news, for people who will not come looking.
           </p>
+          <article className="card mt-8 p-5">
+            <p className="kicker">A sample, not a mailing</p>
+            <h3 className="mt-2 font-display text-2xl text-forest">October, Magic Valley</h3>
+            <p className="mt-3 text-muted">
+              Next shoot: the last Saturday, October 31, in Shoshone. Twin Falls packed Main for Oktoberfest on October 3, KMVT said. Lesson: a flintlock and a percussion gun are both muzzleloaders. Call Leon before you come.
+            </p>
+          </article>
         </div>
 
-        <form onSubmit={onSubmit} className="border border-brass/60 bg-cream p-6">
-          <h2 className="font-display text-2xl text-forest">Put me on the list</h2>
-          <label className="mt-5 block text-sm font-semibold" htmlFor="nl-name">Name</label>
-          <input id="nl-name" required value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" className="mt-1 w-full border border-line bg-parchment px-3 py-3 text-ink" />
-          <label className="mt-4 block text-sm font-semibold" htmlFor="nl-email">Email</label>
-          <input id="nl-email" required type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" className="mt-1 w-full border border-line bg-parchment px-3 py-3 text-ink" />
-          <button type="submit" className="mt-5 inline-flex min-h-11 items-center bg-rust px-5 font-semibold text-cream hover:bg-forest">
-            Subscribe
+        <form onSubmit={onSubmit} className="card p-6 md:p-8">
+          <h2 className="font-display text-3xl text-forest">Keep a name on this phone</h2>
+          <p className="mt-2 text-muted">The club does not receive this form. It is saved here, and a note is copied so you can read it to Leon.</p>
+          <label className="mt-6 block text-sm font-semibold" htmlFor="nl-name">
+            Name
+          </label>
+          <input id="nl-name" required value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" className="field" />
+          <label className="mt-4 block text-sm font-semibold" htmlFor="nl-email">
+            Email
+          </label>
+          <input id="nl-email" required type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" className="field" />
+          <button type="submit" className="btn btn-rust mt-6">
+            Save my name
           </button>
           {saved ? (
             <p className="mt-4 leading-relaxed">
-              Saved on this phone, and copied so you can forward it. The club does not have a mail service connected yet, so this does not send by itself. To be sure Leon has you, call {club.phoneDisplay}.
+              Saved on this phone, and copied. Nothing was emailed to the club. To be sure Leon has you, call {club.phoneDisplay}.
             </p>
           ) : (
-            <p className="mt-4 text-sm text-muted">
-              Until an email service is connected, a signup stays on this device and copies a note. Call {club.contact} if you want your name on paper in the meantime.
-            </p>
+            <p className="mt-4 text-sm text-muted">Until a real sender is chosen, this is a notebook on your device. Call {club.contact} if you want your name on paper.</p>
           )}
         </form>
       </section>
+
+      <CallLeon />
     </main>
   );
 }

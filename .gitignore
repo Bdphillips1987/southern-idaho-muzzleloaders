@@ -5,6 +5,7 @@ node_modules
 artifacts
 dist
 .output
+.wrangler
 *.log
 .env
 .env.*

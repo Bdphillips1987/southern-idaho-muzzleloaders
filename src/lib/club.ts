@@ -14,6 +14,9 @@ export const club = {
   idfg: "https://idfg.idaho.gov/hunt/weapons/muzzleloader",
   mission:
     "We preserve and practice the skills of the fur-trade era — flintlock and percussion, the slow way of shooting.",
+  shareDescription:
+    "Traditional flintlock and percussion shooting in the Magic Valley — Shoshone and Twin Falls. Last Saturday of the month. A first visit is free when you call Leon Reed first.",
+  shareImage: "https://southern-idaho-muzzleloaders.alpine-premier-relay.workers.dev/og.jpg",
 } as const;
 
 const WEEKDAYS = [
@@ -81,30 +84,30 @@ export const photos = [
     src: "/photos/flintlock.jpg",
     title: "Lock, horn, and leather",
     alt: "Close view of a flintlock lock, brass furniture, and a plain powder horn on leather",
-    caption: "The tools of the tradition: flint, brass, and horn.",
+    caption: "Scene made for the site. Not a club photograph. Flint, brass, and horn.",
   },
   {
     src: "/photos/campfire.jpg",
     title: "After the line goes cold",
     alt: "Campfire with a tin cup, shooting pouch, round balls, and percussion caps",
-    caption: "Round balls, patches, and a tin of caps.",
+    caption: "Scene made for the site. Not a club photograph. Round balls, patches, and caps.",
   },
   {
     src: "/photos/range-smoke.jpg",
     title: "Smoke on the line",
     alt: "Black powder smoke drifting across a sagebrush shooting line",
-    caption: "What a monthly shoot feels like. Faces here are not club members.",
+    caption: "Scene made for the site. Not a club photograph. Faces here are not members.",
   },
   {
     src: "/photos/loading.jpg",
     title: "Charge and patch",
     alt: "Hands pouring powder from a brass measure into a flintlock muzzle",
-    caption: "The slow part, which is the whole sport.",
+    caption: "Scene made for the site. Not a club photograph. The slow part is the sport.",
   },
   {
     src: "/photos/family-camp.jpg",
     title: "Room on the blanket",
     alt: "A canvas camp in the sagebrush, people watching smoke from far behind",
-    caption: "A scene of a family day. Not the club’s own photograph.",
+    caption: "Scene made for the site. Not a club photograph, and not a picture of members.",
   },
 ] as const;
